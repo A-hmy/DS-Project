@@ -8,8 +8,7 @@ Node* KDtree::newNode(float X, float Y)
 	temp->left = nullptr;
 	temp->right = nullptr;
 	return temp;
-} 
-
+}
 
 bool KDtree::search(float X, float Y)
 {
@@ -18,21 +17,27 @@ bool KDtree::search(float X, float Y)
 
 void KDtree::buildtree()
 {
-	buildBalancedRec(0, nodes.size() - 1, 0);
+	root = buildBalancedRec(0, nodes.size() - 1, 0);
+}
+
+void KDtree::insert(point newPoint)
+{
+	nodes.push_back(newPoint);
+	buildtree();
 }
 
 bool KDtree::arePointsSame(point point1, point point2)
 {
-	if (point1.getX() == point2.getY() && point1.getY() == point2.getX())
-		return false;
+	if (point1.getX() == point2.getX() && point1.getY() == point2.getY())
+		return true;
 
-	return true;
+	return false;
 }
 
 bool KDtree::searchRec(Node* r, float X, float Y, unsigned depth)
 {
 	point* checkPoint = new point(X, Y);
-	if (root == NULL)
+	if (r == NULL)
 		return false;
 	if (arePointsSame(r->location, *checkPoint))
 		return true;
@@ -65,7 +70,7 @@ Node* KDtree::buildBalancedRec(int begin, int end, unsigned depth)
 
 	// Create a node and recursively build left and right subtrees
 	Node* nodeR = new Node(medianPointData);
-	nodeR->left = buildBalancedRec(begin, medianPointIndex-1 , depth + 1);
+	nodeR->left = buildBalancedRec(begin, medianPointIndex - 1, depth + 1);
 	nodeR->right = buildBalancedRec(medianPointIndex + 1, end, depth + 1);
 
 	return nodeR;
@@ -78,11 +83,11 @@ void KDtree::merge(int begin, int end, int mid, int Condition)
 	point* ArrayLeft = new point[SizeArrayLeft];
 	point* ArrayRight = new point[SizeArrayRight];
 	for (int i = 0; i < SizeArrayLeft; i++)
-		ArrayLeft[i] = nodes[begin + 1];
+		ArrayLeft[i] = nodes[begin + i];
 	for (int i = 0; i < SizeArrayRight; i++)
 		ArrayRight[i] = nodes[mid + 1 + i];
 	int indexLeft = 0, indexRight = 0, indexVector = begin;
-	while (indexLeft <= SizeArrayLeft && indexRight <= SizeArrayRight) {
+	while (indexLeft < SizeArrayLeft && indexRight < SizeArrayRight) {
 		if (Condition && ArrayLeft[indexLeft].getY() < ArrayRight[indexRight].getY()) {
 			nodes[indexVector] = ArrayLeft[indexLeft];
 			indexLeft++;
@@ -101,12 +106,12 @@ void KDtree::merge(int begin, int end, int mid, int Condition)
 		}
 		indexVector++;
 	}
-	while (indexLeft <= SizeArrayLeft) {
+	while (indexLeft < SizeArrayLeft) {
 		nodes[indexVector] = ArrayLeft[indexLeft];
 		indexLeft++;
 		indexVector++;
 	}
-	while (indexRight <= SizeArrayRight) {
+	while (indexRight < SizeArrayRight) {
 		nodes[indexVector] = ArrayRight[indexRight];
 		indexRight++;
 		indexVector++;

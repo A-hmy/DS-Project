@@ -142,11 +142,13 @@
     <ClInclude Include="Branch.h" />
     <ClInclude Include="KDtree.h" />
     <ClInclude Include="MainBranchClass.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="point.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="KDtree.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MainBranchClass.cpp" />
     <ClCompile Include="point.cpp" />
   </ItemGroup>
