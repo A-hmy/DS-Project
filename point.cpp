@@ -26,4 +26,10 @@ void point::setY(float Y)
 	y = Y;
 }
 
+void point::operator=(const point& point)
+{
+	x = point.x;
+	y = point.y;
+}
+
 

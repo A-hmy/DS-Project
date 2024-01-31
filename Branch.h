@@ -9,6 +9,16 @@ private:
 	point coordinate;
 	string NameMainBranch;
 public:
-	Branch(string Name = 0, float X = 0, float Y = 0, string NameMain = 0);
+	Branch();
+	Branch(string Name, float X , float Y , string NameMain );
+	string getName();
+	point getCoordinate();
+	string getNameMainBranch();
+	void setName(string Name);
+	void setCoordinate(point coor);
+	void setNameMainBranch(string NameMain);
+	Branch& operator=(Branch& branch);
+	Branch(const Branch& other);
+	//~Branch();
 };
 

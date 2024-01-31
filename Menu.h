@@ -6,11 +6,11 @@
 #include"point.h"
 #include"KDtree.h"
 #include <limits>
+#include"Branch.h"
 using namespace std;
 KDtree pizzeria;
 void AddP() {
 	string NameOfPizzeria;
-	point CoordinatesOfPizzeria;
 	int x, y;
 	cout << "\033[1;31mEnter the name of the pizzeria:\033[0m\n";
 	cout << "\033[1;32m";
@@ -18,16 +18,17 @@ void AddP() {
 	//cin.ignore(100, '\n'); // Ignore the next 100 characters or until newline is encountered
 	cin >> NameOfPizzeria;
 	cout << "\033[1;31mEnter the coordinates of the pizzeria.(X,Y)\033[0m\n";
-	cout << "\033[1;32m";
+	cout << "\033[1;31mX:\033[0m";
 	cin >> x;
+	cout << "\033[1;31mY:\033[0m";
 	cin >> y;
-	CoordinatesOfPizzeria.setX(x);
-	CoordinatesOfPizzeria.setY(y);
+	Branch* NewBranch = new Branch(NameOfPizzeria, x, y, "");
 	if (pizzeria.search(x, y)) {
 		cout << "error";
 	}
 	else {
-		pizzeria.insert(CoordinatesOfPizzeria);
+		pizzeria.insert(*NewBranch);
+		cout << "\033[1;31mPizzeria added:):\033[0m\n";
 	}
 }
 void Menu() {

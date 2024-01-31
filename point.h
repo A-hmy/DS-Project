@@ -10,5 +10,6 @@ public:
 	float getY();
 	void setX(float X);
 	void setY(float Y);
+	void operator=(const point& point);
 };
 

@@ -1,6 +1,6 @@
 ﻿  main.cpp
-D:\DS-Project\Menu.h(24,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\DS-Project\Menu.h(25,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(25,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(25,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\DS-Project\Menu.h(26,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\DS-Project\Menu.h(26,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Project1.vcxproj -> D:\DS-Project\x64\Debug\Project1.exe

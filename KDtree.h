@@ -3,36 +3,37 @@
 #include "point.h"
 #include<vector>
 #include<algorithm>
+#include"Branch.h"
 using namespace std;
 struct Node {
-	point location;
+	Branch pizzeria;
 	Node* left;
 	Node* right;
 	Node();
-	Node(point P);
+	Node(Branch& P);
 };
 
 class KDtree {
 private:
 	Node* root;
-	vector<point>nodes;//all node in my tree
+	vector<Branch>nodes;//all node in my tree
 public:
 	KDtree() : root(nullptr) {}
 
-	Node* newNode(float X, float Y);
+	Node* newNode(string Name, float X, float Y, string NameMain);//*
 
-	bool search(float X, float Y);
+	bool search(float X, float Y);//*
 
-	void buildtree();
+	void buildtree();//*
 
-	void insert(point newPoint);
+	void insert(Branch newBranch);//*
 private:
 
-	bool arePointsSame(point point1, point point2);
+	bool arePointsSame(point point1, point point2);//*
 
-	bool searchRec(Node* r, float X, float Y, unsigned depth);
+	bool searchRec(Node* r, float X, float Y, unsigned depth);//*
 
-	Node* buildBalancedRec(int begin, int end, unsigned depth);
+	Node* buildBalancedRec(int begin, int end, unsigned depth);//*
 
 	void merge(int begine, int end, int mid, int Condition);
 
