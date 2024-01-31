@@ -24,14 +24,20 @@ public:
 
 	bool search(float X, float Y);//*
 
+	Branch searchBranch(float X, float Y);
+
 	void buildtree();//*
 
 	void insert(Branch newBranch);//*
+
+	void DeleteP(Branch deleteBranch);
 private:
 
 	bool arePointsSame(point point1, point point2);//*
 
 	bool searchRec(Node* r, float X, float Y, unsigned depth);//*
+
+	Branch searchBranchRec(Node* r, float X, float Y, unsigned depth);//*
 
 	Node* buildBalancedRec(int begin, int end, unsigned depth);//*
 

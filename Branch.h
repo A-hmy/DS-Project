@@ -8,9 +8,11 @@ private:
 	string name;
 	point coordinate;
 	string NameMainBranch;
+	bool main;//Main branch:1 
 public:
 	Branch();
-	Branch(string Name, float X , float Y , string NameMain );
+	Branch(string Name, float X , float Y , string NameMain,bool Main );
+	bool getMainFlag();
 	string getName();
 	point getCoordinate();
 	string getNameMainBranch();

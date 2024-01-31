@@ -1,6 +1,20 @@
-﻿  main.cpp
+﻿  Branch.cpp
+  KDtree.cpp
+D:\DS-Project\KDtree.cpp(27,48): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  MainBranchClass.cpp
+  main.cpp
 D:\DS-Project\Menu.h(25,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\DS-Project\Menu.h(25,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\DS-Project\Menu.h(26,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\DS-Project\Menu.h(26,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(51,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(51,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(52,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(52,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(104,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(104,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(105,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\Menu.h(105,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+D:\DS-Project\KDtree.cpp(85): warning C4715: 'KDtree::searchBranchRec': not all control paths return a value
   Project1.vcxproj -> D:\DS-Project\x64\Debug\Project1.exe

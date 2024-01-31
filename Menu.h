@@ -22,7 +22,33 @@ void AddP() {
 	cin >> x;
 	cout << "\033[1;31mY:\033[0m";
 	cin >> y;
-	Branch* NewBranch = new Branch(NameOfPizzeria, x, y, "");
+	Branch* NewBranch = new Branch(NameOfPizzeria, x, y, "", 1);
+	if (pizzeria.search(x, y)) {
+		cout << "error";
+	}
+	else {
+		pizzeria.insert(*NewBranch);
+		cout << "\033[1;31mPizzeria added:):\033[0m\n";
+	}
+}
+void AddBr() {
+	string NameOfPizzeria;
+	string NameMainBranch;
+	int x, y;
+	cout << "\033[1;31mEnter the name of the pizzeria:\033[0m\n";
+	cout << "\033[1;32m";
+	//getline(cin, NameOfPizzeria);
+	//cin.ignore(100, '\n'); // Ignore the next 100 characters or until newline is encountered
+	cin >> NameOfPizzeria;
+	cout << "\033[1;31mEnter the name of the main branch:\033[0m\n";
+	cout << "\033[1;32m";
+	cin >> NameMainBranch;
+	cout << "\033[1;31mEnter the coordinates of the pizzeria.(X,Y)\033[0m\n";
+	cout << "\033[1;31mX:\033[0m";
+	cin >> x;
+	cout << "\033[1;31mY:\033[0m";
+	cin >> y;
+	Branch* NewBranch = new Branch(NameOfPizzeria, x, y, NameMainBranch, 0);
 	if (pizzeria.search(x, y)) {
 		cout << "error";
 	}
@@ -65,8 +91,27 @@ void Menu() {
 		if (enter == "Add-P") {
 			AddP();
 		}
-		if (enter == "Add-Br") {}
-		if (enter == "Del-Br") {}
+		if (enter == "Add-Br") {
+			AddBr();
+		}
+		if (enter == "Del-Br") {
+			int x, y;
+			cout << "\033[1;31mEnter the coordinates of the pizzeria you want to delete:\033[0m\n";
+			cout << "\033[1;31mX:\033[0m";
+			cin >> x;
+			cout << "\033[1;31mY:\033[0m";
+			cin >> y;
+			if (pizzeria.search(x, y)) {
+				if (pizzeria.searchBranch(x, y).getMainFlag())
+					cout << "error";
+				else {
+					//delete
+				}
+			}
+			else
+				cout << "error";
+			
+		}
 		if (enter == "List-P") {}
 		if (enter == "List-Brs") {}
 		if (enter == "Near-P") {}

@@ -17,6 +17,11 @@ bool KDtree::search(float X, float Y)
 	return searchRec(root, X, Y, 0);
 }
 
+Branch KDtree::searchBranch(float X, float Y)
+{
+	return searchBranchRec(root, X, Y, 0);
+}
+
 void KDtree::buildtree()
 {
 	root = buildBalancedRec(0, nodes.size() - 1, 0);
@@ -26,6 +31,11 @@ void KDtree::insert(Branch newBranch)
 {
 	nodes.push_back(newBranch);
 	buildtree();
+}
+
+void KDtree::DeleteP(Branch deleteBranch)
+{
+	//deleted from vector
 }
 
 bool KDtree::arePointsSame(point point1, point point2)
@@ -53,6 +63,25 @@ bool KDtree::searchRec(Node* r, float X, float Y, unsigned depth)
 			return searchRec(r->left, checkPoint->getX(), checkPoint->getY(), depth + 1);
 	}
 	return searchRec(r->right, checkPoint->getX(), checkPoint->getY(), depth + 1);
+}
+
+Branch KDtree::searchBranchRec(Node* r, float X, float Y, unsigned depth)
+{
+	point* checkPoint = new point(X, Y);
+	if (r != NULL) {
+		if (arePointsSame(r->pizzeria.getCoordinate(), *checkPoint))
+			return r->pizzeria;
+		unsigned cd = depth % 2;
+		if (cd == 0) {
+			if (checkPoint->getX() < r->pizzeria.getCoordinate().getX())
+				return searchBranchRec(r->left, checkPoint->getX(), checkPoint->getY(), depth + 1);
+		}
+		if (cd == 1) {
+			if (checkPoint->getY() < r->pizzeria.getCoordinate().getY())
+				return searchBranchRec(r->left, checkPoint->getX(), checkPoint->getY(), depth + 1);
+		}
+		return searchBranchRec(r->right, checkPoint->getX(), checkPoint->getY(), depth + 1);
+	}
 }
 
 Node* KDtree::buildBalancedRec(int begin, int end, unsigned depth)

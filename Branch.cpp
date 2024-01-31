@@ -7,14 +7,21 @@ Branch::Branch()
 	coordinate.setX(0);
 	coordinate.setY(0);
 	NameMainBranch = " ";
+	main = 0;
 }
 
-Branch::Branch(string Name, float X, float Y, string NameMain)
+Branch::Branch(string Name, float X, float Y, string NameMain,bool Main)
 {
 	name = Name;
 	coordinate.setX(X);
 	coordinate.setY(Y);
 	NameMainBranch = NameMain;
+	main = Main;
+}
+
+bool Branch::getMainFlag()
+{
+	return main;
 }
 
 string Branch::getName()
