@@ -11,13 +11,26 @@ struct Node {
 	Node();
 	Node(point P);
 };
+struct DistanceNode {
+	Node* node;
+	double distance;
+
+	DistanceNode(Node* n, double d) : node(n), distance(d) {}
+	bool operator<(const DistanceNode& other) const {
+		return distance < other.distance;
+	}
+};
 
 class KDtree {
 private:
 	Node* root;
 	vector<point>nodes;//all node in my tree
+	double calculateDistance(const point p1, const point p2);
 public:
 	KDtree() : root(nullptr) {}
+
+	vector<Node*> findClosestNodes1(const point& target, int k);
+	
 
 	Node* newNode(float X, float Y);
 
@@ -27,6 +40,8 @@ public:
 
 	void insert(point newPoint);
 private:
+	void findClosestNodes(Node* current, const point target, int depth, int k,
+		vector<DistanceNode>& result);
 
 	bool arePointsSame(point point1, point point2);
 

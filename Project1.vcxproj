@@ -144,6 +144,7 @@
     <ClInclude Include="MainBranchClass.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="point.h" />
+    <ClInclude Include="valley.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainBranchClass.cpp" />
     <ClCompile Include="point.cpp" />
+    <ClCompile Include="valley.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

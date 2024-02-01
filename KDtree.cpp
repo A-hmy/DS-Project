@@ -10,6 +10,12 @@ Node* KDtree::newNode(float X, float Y)
 	return temp;
 }
 
+double KDtree::calculateDistance(point p1,point p2) {
+		double diffX = p1.getX() - p2.getX();
+		double diffY = p1.getY() - p2.getY();
+		return std::sqrt(diffX * diffX + diffY * diffY);
+}
+
 bool KDtree::search(float X, float Y)
 {
 	return searchRec(root, X, Y, 0);
@@ -141,4 +147,42 @@ Node::Node(point P)
 	location = P;
 	left = NULL;
 	right = NULL;
+}
+
+void KDtree::findClosestNodes(Node* current, point target, int depth, int k, vector<DistanceNode>& result) {
+	if (current == nullptr) {
+		return;
+	}
+
+	int axis = depth % 2;
+	Node* nextBranch = (axis == 0 && target.getX() < current->location.getX()) || (axis == 1 && target.getY() < current->location.getY()) ?
+		current->left : current->right;
+	Node * otherBranch = (axis == 0 && target.getX() < current->location.getX()) ||
+		(axis == 1 && target.getY() < current->location.getY()) ?
+		current->right : current->left;
+
+	findClosestNodes(nextBranch, target, depth + 1, k, result);
+	double distance = calculateDistance(current->location, target);
+
+	result.push_back(DistanceNode(current, distance));
+	sort(result.begin(), result.end());
+
+	if (result.size() > static_cast<size_t>(k)) {
+		result.pop_back();
+	}
+
+	if (abs(axis == 0 && target.getX() - current->location.getX() < result.back().distance)) {
+		findClosestNodes(otherBranch, target, depth + 1, k, result);
+	}
+}
+
+vector<Node*> KDtree::findClosestNodes1(const point& target, int k) {
+	vector<DistanceNode> result;
+	findClosestNodes(root, target, 0, k, result);
+	vector<Node*> closestNodes;
+	for (const auto& distanceNode : result) {
+		closestNodes.push_back(distanceNode.node);
+	}
+
+	return closestNodes;
 }
