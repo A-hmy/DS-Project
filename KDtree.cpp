@@ -190,14 +190,13 @@ void KDtree::findClosestNodes(Node* current, point target, int depth, int k, vec
 	}
 
 	int axis = depth % 2;
-	Node* nextBranch = (axis == 0 && target.getX() < current->location.getX()) || (axis == 1 && target.getY() < current->location.getY()) ?
-		current->left : current->right;
-	Node * otherBranch = (axis == 0 && target.getX() < current->location.getX()) ||
-		(axis == 1 && target.getY() < current->location.getY()) ?
+	Node* nextBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX() || (axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY())) ?current->left : current->right;
+	Node * otherBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX()) ||
+		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY()) ?
 		current->right : current->left;
 
 	findClosestNodes(nextBranch, target, depth + 1, k, result);
-	double distance = calculateDistance(current->location, target);
+	double distance = calculateDistance(current->pizzeria.getCoordinate(), target);
 
 	result.push_back(DistanceNode(current, distance));
 	sort(result.begin(), result.end());
@@ -206,7 +205,7 @@ void KDtree::findClosestNodes(Node* current, point target, int depth, int k, vec
 		result.pop_back();
 	}
 
-	if (abs(axis == 0 && target.getX() - current->location.getX() < result.back().distance)) {
+	if (abs(axis == 0 && target.getX() - current->pizzeria.getCoordinate().getX() < result.back().distance)) {
 		findClosestNodes(otherBranch, target, depth + 1, k, result);
 	}
 }

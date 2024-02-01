@@ -26,22 +26,11 @@ class KDtree {
 private:
 	Node* root;
 
-	vector<point>nodes;//all node in my tree
-	double calculateDistance(const point p1, const point p2);
-public:
-	KDtree() : root(nullptr) {}
-
-	vector<Node*> findClosestNodes1(const point& target, int k);
-	
-
-	Node* newNode(float X, float Y);
-
 	vector<Branch>nodes;//all node in my tree
 public:
 	KDtree() : root(nullptr) {}
 
 	Node* newNode(string Name, float X, float Y, string NameMain);//*
-
 
 	bool search(float X, float Y);//*
 
@@ -50,6 +39,8 @@ public:
 	void buildtree();//*
 
 	void insert(Branch newBranch);//*
+
+	vector<Node*> findClosestNodes1(const point& target, int k);
 
 	void DeleteP(Branch deleteBranch);
 private:
@@ -68,5 +59,5 @@ private:
 
 	void mergeSort(int const begin, int const end, int Condition);
 
-
+	double calculateDistance(const point p1, const point p2);
 };
