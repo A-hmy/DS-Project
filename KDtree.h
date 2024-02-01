@@ -3,13 +3,14 @@
 #include "point.h"
 #include<vector>
 #include<algorithm>
+#include"Branch.h"
 using namespace std;
 struct Node {
-	point location;
+	Branch pizzeria;
 	Node* left;
 	Node* right;
 	Node();
-	Node(point P);
+	Node(Branch& P);
 };
 struct DistanceNode {
 	Node* node;
@@ -24,6 +25,7 @@ struct DistanceNode {
 class KDtree {
 private:
 	Node* root;
+
 	vector<point>nodes;//all node in my tree
 	double calculateDistance(const point p1, const point p2);
 public:
@@ -34,20 +36,33 @@ public:
 
 	Node* newNode(float X, float Y);
 
-	bool search(float X, float Y);
+	vector<Branch>nodes;//all node in my tree
+public:
+	KDtree() : root(nullptr) {}
 
-	void buildtree();
+	Node* newNode(string Name, float X, float Y, string NameMain);//*
 
-	void insert(point newPoint);
+
+	bool search(float X, float Y);//*
+
+	Branch searchBranch(float X, float Y);
+
+	void buildtree();//*
+
+	void insert(Branch newBranch);//*
+
+	void DeleteP(Branch deleteBranch);
 private:
 	void findClosestNodes(Node* current, const point target, int depth, int k,
 		vector<DistanceNode>& result);
 
-	bool arePointsSame(point point1, point point2);
+	bool arePointsSame(point point1, point point2);//*
 
-	bool searchRec(Node* r, float X, float Y, unsigned depth);
+	bool searchRec(Node* r, float X, float Y, unsigned depth);//*
 
-	Node* buildBalancedRec(int begin, int end, unsigned depth);
+	Branch searchBranchRec(Node* r, float X, float Y, unsigned depth);//*
+
+	Node* buildBalancedRec(int begin, int end, unsigned depth);//*
 
 	void merge(int begine, int end, int mid, int Condition);
 

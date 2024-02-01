@@ -8,7 +8,19 @@ private:
 	string name;
 	point coordinate;
 	string NameMainBranch;
+	bool main;//Main branch:1 
 public:
-	Branch(string Name = 0, float X = 0, float Y = 0, string NameMain = 0);
+	Branch();
+	Branch(string Name, float X , float Y , string NameMain,bool Main );
+	bool getMainFlag();
+	string getName();
+	point getCoordinate();
+	string getNameMainBranch();
+	void setName(string Name);
+	void setCoordinate(point coor);
+	void setNameMainBranch(string NameMain);
+	Branch& operator=(Branch& branch);
+	Branch(const Branch& other);
+	//~Branch();
 };
 
