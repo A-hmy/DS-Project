@@ -82,7 +82,7 @@ void NearP() {
 }
 
 void AvailP() {
-	float x, y , z;
+	float x, y, z;
 	cout << "\033[1;31mEnter the coordinates of the Point.(X,Y)\033[0m\n";
 	cout << "\033[1;31mX:\033[0m";
 	cin >> x;
@@ -92,23 +92,11 @@ void AvailP() {
 	cout << "\033[1;31mX:\033[0m";
 	cin >> z;
 	point* p1 = new point(x, y);
-	vector<Branch> pointsWithinRadius = pizzeria.FindPointsInCircle1(*p1,z);
+	vector<Branch> pointsWithinRadius = pizzeria.FindPointsInCircle1(*p1, z);
 
 	cout << "Points within radius " << z << " from the target point:\n";
 	for (auto& point1 : pointsWithinRadius) {
-	    cout << "(" << point1.getCoordinate().getX()<< ", " << point1.getCoordinate().getX() << ")\n";
-
-		MainBranchClass* Main = mainPizzeria.search(NameMainBranch);
-		if (Main != nullptr) {
-			pizzeria.insert(*NewBranch);
-			Main->setBranch(*NewBranch);
-			Main->AddNumberOfBranch();
-			cout << "\033[1;31mPizzeria added:):\033[0m\n";
-		}
-		else {
-			cout << "Main not found";
-		}
-
+		cout << "(" << point1.getCoordinate().getX() << ", " << point1.getCoordinate().getY() << ")\n";
 	}
 }
 void Help() {

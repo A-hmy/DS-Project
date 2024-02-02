@@ -12,18 +12,12 @@ Node* KDtree::newNode(string Name, float X, float Y, string NameMain)
 	return temp;
 }
 
-
-double KDtree::Distance(point p1,point p2) {
-		double diffX = p1.getX() - p2.getX();
-		double diffY = p1.getY() - p2.getY();
-		return std::sqrt(diffX * diffX + diffY * diffY);
-
-double KDtree::calculateDistance(point p1, point p2) {
+double KDtree::Distance(point p1, point p2) {
 	double diffX = p1.getX() - p2.getX();
 	double diffY = p1.getY() - p2.getY();
 	return std::sqrt(diffX * diffX + diffY * diffY);
-
 }
+
 
 bool KDtree::search(float X, float Y)
 {
@@ -196,11 +190,7 @@ Node::Node(Branch& P)
 {
 }
 
-double KDtree::Distance(point& p1,point& p2) {
-	double diffX = p1.getX() - p2.getX();
-	double diffY = p1.getY() - p2.getY();
-	return sqrt(diffX * diffX + diffY * diffY);
-}
+
 
 Node* KDtree::FindClosest(Node* current,point& target, int depth) {
 	if (current == nullptr) {
@@ -249,11 +239,6 @@ void KDtree::FindPointsInCircle(Node* current, point& target, float radius, vect
 		return;
 	}
 
-
-	int axis = depth % 2; 
-	Node* nextBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX()) ||
-		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY()) ?
-		current->left : current->right;
 
 	int axis = depth % 2;
 	Node* nextBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX() || (axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY())) ? current->left : current->right;
