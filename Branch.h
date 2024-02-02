@@ -19,7 +19,8 @@ public:
 	void setName(string Name);
 	void setCoordinate(point coor);
 	void setNameMainBranch(string NameMain);
-	Branch& operator=(Branch& branch);
+	Branch& operator=(const Branch& branch);
+	bool operator==(const Branch& branch)const;
 	Branch(const Branch& other);
 	//~Branch();
 };

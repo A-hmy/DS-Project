@@ -16,7 +16,6 @@ struct Node {
 class KDtree {
 private:
 	Node* root;
-
 	vector<Branch>nodes;//all node in my tree
 public:
 	KDtree() : root(nullptr) {}
@@ -35,7 +34,7 @@ public:
 
 	vector<Branch> FindPointsInCircle1(point& target, float radius);
 
-	void DeleteP(Branch deleteBranch);
+	void DeleteP(point deleteBranch);
 private:
 	double Distance(point& p1,point& p2);
 

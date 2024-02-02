@@ -19,6 +19,14 @@ Branch::Branch(string Name, float X, float Y, string NameMain,bool Main)
 	main = Main;
 }
 
+Branch::Branch(const Branch& other)
+{
+	name = other.name;
+	coordinate = other.coordinate;
+	NameMainBranch = other.NameMainBranch;
+	main = other.main;
+}
+
 bool Branch::getMainFlag()
 {
 	return main;
@@ -55,20 +63,26 @@ void Branch::setNameMainBranch(string NameMain)
 	NameMainBranch = NameMain;
 }
 
-Branch& Branch::operator=(Branch& branch)
+Branch& Branch::operator=(const Branch& branch)
 {
-	name = branch.name;
-	coordinate = branch.coordinate;
-	NameMainBranch = branch.NameMainBranch;
+	if (this != &branch)
+	{
+		name = branch.name;
+		coordinate = branch.coordinate;
+		NameMainBranch = branch.NameMainBranch;
+		main = branch.main;
+	}
 	return *this;
 }
 
-Branch::Branch(const Branch& other)
+
+bool Branch::operator==(const Branch& branch)const
 {
-	// Assuming Coordinate, Name, and NameMain are appropriately copyable
-	coordinate = other.coordinate;  // Assuming Coordinate has a copy constructor
-	name = other.name;
-	NameMainBranch = other.NameMainBranch;
-	// If there are dynamically allocated resources, ensure to deep copy them
-	// Example: resourcePtr = new ResourceType(*(other.resourcePtr));
+	if (name == branch.name && coordinate == branch.coordinate && NameMainBranch == branch.NameMainBranch)
+		return 1;
+	else
+		return 0;
+
 }
+
+

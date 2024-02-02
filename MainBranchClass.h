@@ -11,8 +11,18 @@ private:
 	string name;
 	point coordinate;
 	vector<Branch> Branchs;
+	int NumberOfBranch; 
 public:
 	MainBranchClass(string Name,float x,float y);
-	void setBranch(Branch branch);
+	void setBranch(const Branch& branch);
+	void removeBranch(point& branch);
+	string getName();
+	point getCordinate();
+	void printBranch();
+	void setName(string Name);
+	void setCordinate(int x,int y);
+	void AddNumberOfBranch();
+	void ReduceNumberOfPencils();
+	int getNumberOfBranch();
 };
 

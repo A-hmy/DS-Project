@@ -12,10 +12,17 @@ Node* KDtree::newNode(string Name, float X, float Y, string NameMain)
 	return temp;
 }
 
+
 double KDtree::Distance(point p1,point p2) {
 		double diffX = p1.getX() - p2.getX();
 		double diffY = p1.getY() - p2.getY();
 		return std::sqrt(diffX * diffX + diffY * diffY);
+
+double KDtree::calculateDistance(point p1, point p2) {
+	double diffX = p1.getX() - p2.getX();
+	double diffY = p1.getY() - p2.getY();
+	return std::sqrt(diffX * diffX + diffY * diffY);
+
 }
 
 bool KDtree::search(float X, float Y)
@@ -39,9 +46,15 @@ void KDtree::insert(Branch newBranch)
 	buildtree();
 }
 
-void KDtree::DeleteP(Branch deleteBranch)
+void KDtree::DeleteP(point deleteBranch)
 {
-	//deleted from vector
+	for (auto it = nodes.begin(); it != nodes.end(); ++it) {
+		if ((* it).getCoordinate() == deleteBranch) {
+			nodes.erase(it);
+			break;
+		}
+	}
+	buildtree();
 }
 
 bool KDtree::arePointsSame(point point1, point point2)
@@ -236,10 +249,15 @@ void KDtree::FindPointsInCircle(Node* current, point& target, float radius, vect
 		return;
 	}
 
+
 	int axis = depth % 2; 
 	Node* nextBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX()) ||
 		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY()) ?
 		current->left : current->right;
+
+	int axis = depth % 2;
+	Node* nextBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX() || (axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY())) ? current->left : current->right;
+
 	Node* otherBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX()) ||
 		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY()) ?
 		current->right : current->left;
