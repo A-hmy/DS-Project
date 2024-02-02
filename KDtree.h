@@ -37,6 +37,8 @@ public:
 	void DeleteP(point deleteBranch);
 private:
 
+	double Distance(const point p1, const point p2);
+
 	void FindPointsInCircle(Node* current,point& target, float radius, std::vector<Branch>& result, int depth);
 
 	Node* FindClosest(Node* current, point& target, int depth);
