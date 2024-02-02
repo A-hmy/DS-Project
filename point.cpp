@@ -1,5 +1,4 @@
 #include "point.h"
-
 point::point(float X, float Y)
 {
 	x = X;
@@ -31,5 +30,22 @@ void point::operator=(const point& point)
 	x = point.x;
 	y = point.y;
 }
+
+bool point::operator==(const point& point)const
+{
+	if (x == point.x && y == point.y)
+		return 1;
+	else
+		return 0;
+}
+
+point::point(const point& other)
+	: x(other.x), y(other.y){}
+
+std::ostream& operator<<(std::ostream& os, const point& p) {
+	os << "(" << p.x << "," << p.y << ")" << std::endl;
+	return os;
+}
+
 
 

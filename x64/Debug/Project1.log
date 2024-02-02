@@ -1,1 +1,8 @@
-﻿  Project1.vcxproj -> D:\DS-Project\x64\Debug\Project1.exe
+﻿  HashMain.cpp
+  MainBranchClass.cpp
+D:\DS-Project\MainBranchClass.cpp(51,18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\DS-Project\MainBranchClass.cpp(52,18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+  point.cpp
+  Generating Code...
+  Project1.vcxproj -> D:\DS-Project\x64\Debug\Project1.exe

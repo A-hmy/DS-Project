@@ -25,7 +25,6 @@ struct DistanceNode {
 class KDtree {
 private:
 	Node* root;
-
 	vector<Branch>nodes;//all node in my tree
 public:
 	KDtree() : root(nullptr) {}
@@ -42,7 +41,7 @@ public:
 
 	vector<Node*> findClosestNodes1(const point& target, int k);
 
-	void DeleteP(Branch deleteBranch);
+	void DeleteP(point deleteBranch);
 private:
 	void findClosestNodes(Node* current, const point target, int depth, int k,
 		vector<DistanceNode>& result);
