@@ -40,11 +40,24 @@ bool point::operator==(const point& point)const
 }
 
 point::point(const point& other)
-	: x(other.x), y(other.y){}
+	: x(other.x), y(other.y) {}
 
 std::ostream& operator<<(std::ostream& os, const point& p) {
 	os << "(" << p.x << "," << p.y << ")" << std::endl;
 	return os;
+}
+
+std::istream& operator>>(std::istream& input, point& Point)
+{
+
+	std::cout << "Enter x-coordinate: ";
+	input >> Point.x;
+
+	std::cout << "Enter y-coordinate: ";
+	input >> Point.y;
+
+	return input;
+
 }
 
 

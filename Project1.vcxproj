@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Branch.h" />
     <ClInclude Include="HashMain.h" />
+    <ClInclude Include="HashValley.h" />
     <ClInclude Include="KDtree.h" />
     <ClInclude Include="MainBranchClass.h" />
     <ClInclude Include="Menu.h" />
@@ -150,9 +151,11 @@
   <ItemGroup>
     <ClCompile Include="Branch.cpp" />
     <ClCompile Include="HashMain.cpp" />
+    <ClCompile Include="HashValley.cpp" />
     <ClCompile Include="KDtree.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainBranchClass.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="valley.cpp" />
   </ItemGroup>

@@ -15,5 +15,6 @@ public:
 	void operator=(const point& point);
 	bool operator==(const point& point)const;
 	point(const point& other);
+	friend std::istream& operator>>(std::istream& input, point& Point);
 };
 

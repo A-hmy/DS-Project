@@ -36,7 +36,6 @@ public:
 
 	void DeleteP(point deleteBranch);
 private:
-	double Distance(point& p1,point& p2);
 
 	void FindPointsInCircle(Node* current,point& target, float radius, std::vector<Branch>& result, int depth);
 
@@ -55,4 +54,6 @@ private:
 	void mergeSort(int const begin, int const end, int Condition);
 
 	double Distance(const point p1, const point p2);
+
+	double calculateDistance(point p1, point p2);
 };
