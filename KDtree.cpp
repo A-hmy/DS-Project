@@ -1,4 +1,4 @@
- #include "KDtree.h"
+#include "KDtree.h"
 
 Node* KDtree::newNode(string Name, float X, float Y, string NameMain)
 {
@@ -20,13 +20,11 @@ double KDtree::Distance(point p1, point p2) {
 }
 
 double KDtree::calculateDistance(point p1, point p2) {
-
-double KDtree::Distance(point p1, point p2) {
 	double diffX = p1.getX() - p2.getX();
 	double diffY = p1.getY() - p2.getY();
 	return std::sqrt(diffX * diffX + diffY * diffY);
-}
 
+}
 
 bool KDtree::search(float X, float Y)
 {
@@ -52,7 +50,7 @@ void KDtree::insert(Branch newBranch)
 void KDtree::DeleteP(point deleteBranch)
 {
 	for (auto it = nodes.begin(); it != nodes.end(); ++it) {
-		if ((* it).getCoordinate() == deleteBranch) {
+		if ((*it).getCoordinate() == deleteBranch) {
 			nodes.erase(it);
 			break;
 		}
@@ -195,10 +193,10 @@ Node::Node()
 }
 
 Node::Node(Branch& P)
-	: pizzeria(P), left(nullptr), right(nullptr){}
+	: pizzeria(P), left(nullptr), right(nullptr) {}
 
 
-Node* KDtree::FindClosest(Node* current,point& target, int depth) {
+Node* KDtree::FindClosest(Node* current, point& target, int depth) {
 	if (current == nullptr) {
 		return nullptr;
 	}
@@ -208,7 +206,7 @@ Node* KDtree::FindClosest(Node* current,point& target, int depth) {
 		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY())) ?
 		current->left : current->right;
 	Node* otherBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX() ||
-		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY()))?
+		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY())) ?
 		current->right : current->left;
 
 	Node* closest = FindClosest(nextBranch, target, depth + 1);
@@ -216,7 +214,7 @@ Node* KDtree::FindClosest(Node* current,point& target, int depth) {
 	double distance = Distance(current->pizzeria.getCoordinate(), target);
 	double closestDistance = (closest != nullptr) ? Distance(closest->pizzeria.getCoordinate(), target) : std::numeric_limits<double>::max();
 
-	
+
 	if (distance < closestDistance) {
 		closest = current;
 	}
@@ -246,13 +244,10 @@ void KDtree::FindPointsInCircle(Node* current, point& target, float radius, vect
 	}
 
 
-	int axis = depth % 2; 
+	int axis = depth % 2;
 	Node* nextBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX()) ||
 		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY()) ?
 		current->left : current->right;
-
-	int axis = depth % 2;
-	Node* nextBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX() || (axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY())) ? current->left : current->right;
 
 	Node* otherBranch = (axis == 0 && target.getX() < current->pizzeria.getCoordinate().getX()) ||
 		(axis == 1 && target.getY() < current->pizzeria.getCoordinate().getY()) ?
@@ -266,7 +261,7 @@ void KDtree::FindPointsInCircle(Node* current, point& target, float radius, vect
 		result.push_back(current->pizzeria);
 	}
 
-	
+
 	if ((axis == 0 && abs(target.getX() - current->pizzeria.getCoordinate().getX()) < radius) ||
 		(axis == 1 && abs(target.getY() - current->pizzeria.getCoordinate().getY()) < radius)) {
 		FindPointsInCircle(otherBranch, target, radius, result, depth + 1);

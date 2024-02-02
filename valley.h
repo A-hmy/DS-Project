@@ -9,8 +9,8 @@ private:
 	point location[4];
 public:
 	valley();
-	valley(string Name,point  Location[]);
+	valley(string Name, point  Location[]);
 	string getName();
-	
+
 };
 
