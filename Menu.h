@@ -11,7 +11,7 @@ using namespace std;
 KDtree pizzeria;
 void AddP() {
 	string NameOfPizzeria;
-	int x, y;
+	float x, y;
 	cout << "\033[1;31mEnter the name of the pizzeria:\033[0m\n";
 	cout << "\033[1;32m";
 	//getline(cin, NameOfPizzeria);
@@ -34,7 +34,7 @@ void AddP() {
 void AddBr() {
 	string NameOfPizzeria;
 	string NameMainBranch;
-	int x, y;
+	float x, y;
 	cout << "\033[1;31mEnter the name of the pizzeria:\033[0m\n";
 	cout << "\033[1;32m";
 	//getline(cin, NameOfPizzeria);
@@ -55,6 +55,46 @@ void AddBr() {
 	else {
 		pizzeria.insert(*NewBranch);
 		cout << "\033[1;31mPizzeria added:):\033[0m\n";
+		// Hear we have to print the specifications
+	}
+}
+void NearP() {
+	float x, y;
+	cout << "\033[1;31mEnter the coordinates of the Point.(X,Y)\033[0m\n";
+	cout << "\033[1;31mX:\033[0m";
+	cin >> x;
+	cout << "\033[1;31mY:\033[0m";
+	cin >> y;
+	point* p1 = new point(x,y);
+	Node* closestNode = pizzeria.FindClosest1(*p1);
+
+	
+	if (closestNode != nullptr) {
+		cout << "Closest node to the target point: (" << closestNode->pizzeria.getCoordinate().getX() << ", " << closestNode->pizzeria.getCoordinate().getY() << ")\n";
+	}
+	else {
+		cout << "No points in the KD Tree.\n";
+	}
+	// Hear we have to print the specifications
+	
+}
+
+void AvailP() {
+	float x, y , z;
+	cout << "\033[1;31mEnter the coordinates of the Point.(X,Y)\033[0m\n";
+	cout << "\033[1;31mX:\033[0m";
+	cin >> x;
+	cout << "\033[1;31mY:\033[0m";
+	cin >> y;
+	cout << "\033[1;31mEnter the radius\033[0m\n";
+	cout << "\033[1;31mX:\033[0m";
+	cin >> z;
+	point* p1 = new point(x, y);
+	vector<Branch> pointsWithinRadius = pizzeria.FindPointsInCircle1(*p1,z);
+
+	cout << "Points within radius " << z << " from the target point:\n";
+	for (auto& point1 : pointsWithinRadius) {
+	    cout << "(" << point1.getCoordinate().getX()<< ", " << point1.getCoordinate().getX() << ")\n";
 	}
 }
 void Menu() {
@@ -114,8 +154,8 @@ void Menu() {
 		}
 		if (enter == "List-P") {}
 		if (enter == "List-Brs") {}
-		if (enter == "Near-P") {}
-		if (enter == "Avail-P") {}
+		if (enter == "Near-P") { NearP(); }
+		if (enter == "Avail-P") { AvailP(); }
 		if (enter == "Most-Brs") {}
 	}
 }

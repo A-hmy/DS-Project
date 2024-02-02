@@ -12,15 +12,6 @@ struct Node {
 	Node();
 	Node(Branch& P);
 };
-struct DistanceNode {
-	Node* node;
-	double distance;
-
-	DistanceNode(Node* n, double d) : node(n), distance(d) {}
-	bool operator<(const DistanceNode& other) const {
-		return distance < other.distance;
-	}
-};
 
 class KDtree {
 private:
@@ -40,12 +31,17 @@ public:
 
 	void insert(Branch newBranch);//*
 
-	vector<Node*> findClosestNodes1(const point& target, int k);
+	Node* FindClosest1(point& target);
+
+	vector<Branch> FindPointsInCircle1(point& target, float radius);
 
 	void DeleteP(Branch deleteBranch);
 private:
-	void findClosestNodes(Node* current, const point target, int depth, int k,
-		vector<DistanceNode>& result);
+	double Distance(point& p1,point& p2);
+
+	void FindPointsInCircle(Node* current,point& target, float radius, std::vector<Branch>& result, int depth);
+
+	Node* FindClosest(Node* current, point& target, int depth);
 
 	bool arePointsSame(point point1, point point2);//*
 
@@ -59,5 +55,5 @@ private:
 
 	void mergeSort(int const begin, int const end, int Condition);
 
-	double calculateDistance(const point p1, const point p2);
+	double Distance(const point p1, const point p2);
 };
