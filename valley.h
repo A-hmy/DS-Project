@@ -11,6 +11,7 @@ public:
 	valley();
 	valley(string Name, point  Location[]);
 	string getName();
+	point* getPoint();
 
 };
 

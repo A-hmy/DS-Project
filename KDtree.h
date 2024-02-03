@@ -35,7 +35,12 @@ public:
 	vector<Branch> FindPointsInCircle1(point& target, float radius);
 
 	void DeleteP(point deleteBranch);
+
+	void FindPointsInRectangle(point A, point B, point C, point D);
 private:
+
+
+	bool IsInsideToRectangle(point A, point B, point C, point D, point M);
 
 	void FindPointsInCircle(Node* current, point& target, float radius, std::vector<Branch>& result, int depth);
 
@@ -55,5 +60,4 @@ private:
 
 	double Distance(const point p1, const point p2);
 
-	double calculateDistance(point p1, point p2);
 };

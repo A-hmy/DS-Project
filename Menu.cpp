@@ -70,7 +70,7 @@ void NearP() {
 
 
 	if (closestNode != nullptr) {
-		cout << "Closest node to the target point: (" << closestNode->pizzeria.getCoordinate().getX() << ", " << closestNode->pizzeria.getCoordinate().getY() << ")\n";
+		cout << "Closest node to the target point:    " << closestNode->pizzeria.getName() << "      :      " << "(" << closestNode->pizzeria.getCoordinate().getX() << ", " << closestNode->pizzeria.getCoordinate().getY() << ")\n";
 	}
 	else {
 		cout << "No points in the KD Tree.\n";
@@ -89,11 +89,33 @@ void AvailP() {
 	cout << "\033[1;31mX:\033[0m";
 	cin >> z;
 	point* p1 = new point(x, y);
-	vector<Branch> pointsWithinRadius = pizzeria.FindPointsInCircle1(*p1, z);
+	vector<Branch> pointsInRadius = pizzeria.FindPointsInCircle1(*p1, z);
+	if (!pointsInRadius.empty()) {
+		cout << "Points within radius " << z << " from the target point:\n";
+		for (auto& point1 : pointsInRadius)
+			cout << point1.getName() << "     :     " << point1.getCoordinate() << "\n";
+	}
+	else {
+		cout << "There is no point.\n\n";
+	}
+}
+void ListP() {
+	string NameOfValley;
+	cout << "\033[1;31mEnter the name of the Valley:\033[0m\n";
+	cout << "\033[1;32m";
+	cin >> NameOfValley;
+	valley *v1=Valley.search(NameOfValley);
+	if (v1 == NULL) {
+		cout << "There is no Valley.\n\n";
+	}
+	else {
+		point* p1 = new point(v1->getPoint()[0].getX(), v1->getPoint()[0].getY());
+		point* p2 = new point(v1->getPoint()[1].getX(), v1->getPoint()[1].getY());
+		point* p3 = new point(v1->getPoint()[2].getX(), v1->getPoint()[2].getY());
+		point* p4 = new point(v1->getPoint()[3].getX(), v1->getPoint()[3].getY());
+		pizzeria.FindPointsInRectangle(*p1, *p2, *p3, *p4);
+	}
 
-	cout << "Points within radius " << z << " from the target point:\n";
-	for (auto& point1 : pointsWithinRadius)
-		cout << point1.getCoordinate() << "\n";
 }
 void Help() {
 	cout << "\033[1;32mW";
@@ -147,7 +169,7 @@ void ListBrs() {
 void AddN() {
 	string NameOfValley;
 	point p[4];
-	cout << "\033[1;31mEnter the name of the pizzeria:\033[0m\n";
+	cout << "\033[1;31mEnter the name of the Valley:\033[0m\n";
 	cout << "\033[1;32m";
 	cin >> NameOfValley;
 	for (int i = 0; i < 4; i++) {
@@ -172,7 +194,7 @@ void Menu() {
 		if (enter == "Add-P") { AddP(); }//2******
 		if (enter == "Add-Br") { AddBr(); }//3******
 		if (enter == "Del-Br") { DelBr(); }//4*******
-		if (enter == "List-P") {}//5
+		if (enter == "List-P") { ListP(); }//5********
 		if (enter == "List-Brs") { ListBrs(); }//6********
 		if (enter == "Near-P") { NearP(); }//7******
 		if (enter == "Near-Br") {}//8

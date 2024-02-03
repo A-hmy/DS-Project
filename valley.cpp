@@ -21,3 +21,6 @@ string valley::getName()
 	return name;
 }
 
+point* valley::getPoint() {
+	return location;
+}

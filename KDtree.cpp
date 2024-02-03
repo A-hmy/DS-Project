@@ -19,12 +19,6 @@ double KDtree::Distance(point p1, point p2) {
 	return std::sqrt(diffX * diffX + diffY * diffY);
 }
 
-double KDtree::calculateDistance(point p1, point p2) {
-	double diffX = p1.getX() - p2.getX();
-	double diffY = p1.getY() - p2.getY();
-	return std::sqrt(diffX * diffX + diffY * diffY);
-
-}
 
 bool KDtree::search(float X, float Y)
 {
@@ -272,4 +266,40 @@ vector<Branch> KDtree::FindPointsInCircle1(point& target, float radius) {
 	std::vector<Branch> result;
 	FindPointsInCircle(root, target, radius, result, 0);
 	return result;
+}
+
+bool KDtree::IsInsideToRectangle(point A, point B, point C, point D,point M) {
+	int flag = 0;
+
+	// Check if the ray from M along the positive x-axis intersects with each edge
+	if ((A.getY() > M.getY()) != (B.getY() > M.getY()) && M.getX() < (B.getX() - A.getX()) * (M.getY() - A.getY()) / (B.getY() - A.getY()) + A.getX()) {
+		++flag;
+	}
+
+	if ((B.getY() > M.getY()) != (C.getY() > M.getY()) && M.getX() < (C.getX() - B.getX()) * (M.getY() - B.getY()) / (C.getY() - B.getY()) + B.getX()) {
+		++flag;
+	}
+
+	if ((C.getY() > M.getY()) != (D.getY() > M.getY()) && M.getX() < (D.getX() - C.getX()) * (M.getY() - C.getY()) / (D.getY() - C.getY()) + C.getX()) {
+		++flag;
+	}
+
+	if ((D.getY() > M.getY()) != (A.getY() > M.getY()) && M.getX() < (A.getX() - D.getX()) * (M.getY() - D.getY()) / (A.getY() - D.getY()) + D.getX()) {
+		++flag;
+	}
+
+	// If the number of intersections is odd, the point is inside the polygon
+	return (flag % 2 == 1);
+}
+
+
+
+
+void KDtree::FindPointsInRectangle(point A, point B, point C, point D) {
+	for (auto& point1 : nodes) {
+		if (IsInsideToRectangle(A, B, C, D, point1.getCoordinate())) {
+			cout << "\n" << point1.getName() << "   :        " <<  "("  << point1.getCoordinate().getX() << ", " << point1.getCoordinate().getY() << ")\n";
+		}
+
+	}
 }
