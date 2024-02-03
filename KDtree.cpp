@@ -12,7 +12,6 @@ Node* KDtree::newNode(string Name, float X, float Y, string NameMain)
 	return temp;
 }
 
-
 double KDtree::Distance(point p1, point p2) {
 	double diffX = p1.getX() - p2.getX();
 	double diffY = p1.getY() - p2.getY();
@@ -189,7 +188,6 @@ Node::Node()
 Node::Node(Branch& P)
 	: pizzeria(P), left(nullptr), right(nullptr) {}
 
-
 Node* KDtree::FindClosest(Node* current, point& target, int depth) {
 	if (current == nullptr) {
 		return nullptr;
@@ -231,7 +229,6 @@ Node* KDtree::FindClosest1(point& target) {
 	return FindClosest(root, target, 0);
 }
 
-
 void KDtree::FindPointsInCircle(Node* current, point& target, float radius, vector<Branch>& result, int depth) {
 	if (current == nullptr) {
 		return;
@@ -268,6 +265,7 @@ vector<Branch> KDtree::FindPointsInCircle1(point& target, float radius) {
 	return result;
 }
 
+
 bool KDtree::IsInsideToRectangle(point A, point B, point C, point D,point M) {
 	int flag = 0;
 
@@ -302,4 +300,9 @@ void KDtree::FindPointsInRectangle(point A, point B, point C, point D) {
 		}
 
 	}
+
+void KDtree::setNodes(vector<Branch> Nodes)
+{
+	nodes = Nodes;
+
 }

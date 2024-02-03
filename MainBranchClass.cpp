@@ -1,5 +1,13 @@
 #include "MainBranchClass.h"
 
+MainBranchClass::MainBranchClass()
+{
+	name = "";
+	coordinate.setX(0);
+	coordinate.setY(0);
+	NumberOfBranch = 0;
+}
+
 MainBranchClass::MainBranchClass(string Name, float x, float y)
 {
 	name = Name;
@@ -10,14 +18,14 @@ MainBranchClass::MainBranchClass(string Name, float x, float y)
 
 void MainBranchClass::setBranch(const Branch& branch)
 {
-	Branchs.push_back(branch);
+	Branches.push_back(branch);
 }
 
 void MainBranchClass::removeBranch(point& branch)
 {
-	for (auto it = Branchs.begin(); it != Branchs.end(); ++it) {
+	for (auto it = Branches.begin(); it != Branches.end(); ++it) {
 		if ((*it).getCoordinate() == branch) {
-			Branchs.erase(it);
+			Branches.erase(it);
 			break;
 		}
 	}
@@ -35,10 +43,11 @@ point MainBranchClass::getCordinate()
 
 void MainBranchClass::printBranch()
 {
-	cout << name << "branches:";
-	for (auto it : Branchs) {
-		cout <<"Name:" << it.getName()<<"Coordinate:" << it.getCoordinate();
+	cout << name << "\t\t\t\033[38;5;28mbranches:";
+	for (auto it : Branches) {
+		cout <<"\t\t\t\033[38;5;28mName:" << it.getName() << "Coordinate:" << it.getCoordinate();
 	}
+	cout << "\033[0m";
 }
 
 void MainBranchClass::setName(string Name)
@@ -57,7 +66,7 @@ void MainBranchClass::AddNumberOfBranch()
 	NumberOfBranch++;
 }
 
-void MainBranchClass::ReduceNumberOfPencils()
+void MainBranchClass::ReduceNumberOfBeranch()
 {
 	NumberOfBranch--;
 }
@@ -66,3 +75,9 @@ int MainBranchClass::getNumberOfBranch()
 {
 	return NumberOfBranch;
 }
+
+vector<Branch> MainBranchClass::getBranches()//==================
+{
+	return Branches;
+}
+ 

@@ -36,7 +36,11 @@ public:
 
 	void DeleteP(point deleteBranch);
 
+
 	void FindPointsInRectangle(point A, point B, point C, point D);
+
+	void setNodes(vector<Branch>Nodes);
+
 private:
 
 

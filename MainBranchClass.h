@@ -10,9 +10,10 @@ class MainBranchClass
 private:
 	string name;
 	point coordinate;
-	vector<Branch> Branchs;
+	vector<Branch> Branches;
 	int NumberOfBranch; 
 public:
+	MainBranchClass();
 	MainBranchClass(string Name,float x,float y);
 	void setBranch(const Branch& branch);
 	void removeBranch(point& branch);
@@ -22,7 +23,8 @@ public:
 	void setName(string Name);
 	void setCordinate(int x,int y);
 	void AddNumberOfBranch();
-	void ReduceNumberOfPencils();
+	void ReduceNumberOfBeranch();
 	int getNumberOfBranch();
+	vector<Branch> getBranches();
 };
 

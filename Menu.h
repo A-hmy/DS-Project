@@ -21,3 +21,5 @@ void DelBr();
 void ListBrs();
 void AddN();
 void Menu();
+void NearBr();
+void MostBrs();
