@@ -50,12 +50,14 @@ std::ostream& operator<<(std::ostream& os, const point& p) {
 std::istream& operator>>(std::istream& input, point& Point)
 {
 
-	std::cout << "Enter x-coordinate: ";
+	std::cout << "\t\t\t\033[38;5;202mEnter x-coordinate:\033[0m";
+	std::cout << "\033[38;5;220m";
 	input >> Point.x;
-
-	std::cout << "Enter y-coordinate: ";
+	std::cout << "\033[0m";
+	std::cout << "\t\t\t\033[38;5;202mEnter y-coordinate:\033[0m";
+	std::cout << "\033[38;5;220m";
 	input >> Point.y;
-
+	std::cout << "\033[0m";
 	return input;
 
 }

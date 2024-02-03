@@ -35,6 +35,8 @@ public:
 	vector<Branch> FindPointsInCircle1(point& target, float radius);
 
 	void DeleteP(point deleteBranch);
+
+	void setNodes(vector<Branch>Nodes);
 private:
 
 	void FindPointsInCircle(Node* current, point& target, float radius, std::vector<Branch>& result, int depth);
