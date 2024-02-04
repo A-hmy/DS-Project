@@ -5,7 +5,6 @@ HashValley::HashValley()
 	sizeHashTable = 41;
 	hashTable.resize(41);
 }
-
 int HashValley::HashFunction(string Vall)
 {
 	int sum = 0;
@@ -14,13 +13,11 @@ int HashValley::HashFunction(string Vall)
 	}
 	return sum % sizeHashTable;
 }
-
 void HashValley::insert(valley* Vall)
 {
 	int index = HashFunction(Vall->getName());
 	hashTable[index].push_back(Vall);
 }
-
 valley* HashValley::search(string Vall)
 {
 	if (!hashTable.empty()) {
@@ -35,7 +32,15 @@ valley* HashValley::search(string Vall)
 	}
 	return NULL;
 }
-
+void HashValley::Deleted(valley Vall) {
+	int index = HashFunction(Vall.getName());
+	for (auto it = hashTable[index].begin(); it != hashTable[index].end(); ++it) {
+		if ((*it)->getName() == Vall.getName()) {
+			hashTable[index].erase(it);
+			break;
+		}
+	}
+}
 
 
 

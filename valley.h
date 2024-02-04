@@ -12,6 +12,6 @@ public:
 	valley(string Name, point  Location[]);
 	string getName();
 	point* getPoint();
-
+	valley& operator=(const valley& branch);
 };
 

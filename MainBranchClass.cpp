@@ -21,7 +21,7 @@ void MainBranchClass::setBranch(const Branch& branch)
 	Branches.push_back(branch);
 }
 
-void MainBranchClass::removeBranch(point& branch)
+void MainBranchClass::removeBranch(point branch)
 {
 	for (auto it = Branches.begin(); it != Branches.end(); ++it) {
 		if ((*it).getCoordinate() == branch) {
@@ -79,5 +79,13 @@ int MainBranchClass::getNumberOfBranch()
 vector<Branch> MainBranchClass::getBranches()//==================
 {
 	return Branches;
+}
+
+bool MainBranchClass::operator==(const MainBranchClass& Mainbranch) const
+{
+	if (name == Mainbranch.name && coordinate == Mainbranch.coordinate)
+		return 1;
+	else
+		return 0;
 }
  

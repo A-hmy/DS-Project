@@ -21,11 +21,18 @@ string valley::getName()
 	return name;
 }
 
-
-point* valley::getPoint() {
-
 point* valley::getPoint()
 {
-
 	return location;
+}
+
+valley& valley::operator=(const valley& vall)
+{
+	if (this != &vall)
+	{
+		name = vall.name;
+		for (int i = 0; i < 4; i++)
+			location[i] = vall.location[i];
+	}
+	return *this;
 }

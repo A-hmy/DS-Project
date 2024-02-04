@@ -21,4 +21,5 @@ public:
 	void insert(MainBranchClass* MainP);
 	MainBranchClass* search(string MainP);
 	MainBranchClass mostBranches();
+	void Deleted(MainBranchClass Br);
 };

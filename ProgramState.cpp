@@ -2,13 +2,14 @@
 
 ProgramState::ProgramState()
 {
-	NumberOfCommand = 0;
+	SizeHash = 41;
+	HashTableCommand.resize(41);
 }
 int ProgramState::HashFunction(int numberOfCommand)
 {
-	return numberOfCommand - 1;
+	return numberOfCommand% SizeHash;
 }
-void ProgramState::insert(Command*com)
+void ProgramState::insert(Command* com)
 {
 	int index = HashFunction(com->getNumberOfCommand());
 	HashTableCommand[index].push_back(com);
@@ -26,5 +27,14 @@ Command* ProgramState::search(int numberOfCommand)
 		}
 	}
 	return NULL;
+}
+void ProgramState::Deleted(Command com) {
+	int index = HashFunction(com.getNumberOfCommand());
+	for (auto it = HashTableCommand[index].begin(); it != HashTableCommand[index].end(); ++it) {
+		if ((*it)->getNumberOfCommand() == com.getNumberOfCommand()) {
+			HashTableCommand[index].erase(it);
+			break;
+		}
+	}
 }
 

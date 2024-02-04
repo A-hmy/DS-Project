@@ -8,10 +8,15 @@
 #include"Branch.h"
 #include"HashMain.h"
 #include"HashValley.h"
+#include"ProgramState.h"
+#include"Command.h"
+#include <sstream>
 using namespace std;
 extern KDtree pizzeria;
 extern HashMain mainPizzeria;
 extern HashValley Valley;
+extern int NumCommand;
+extern ProgramState programstate;
 void AddP();
 void AddBr();
 void NearP();

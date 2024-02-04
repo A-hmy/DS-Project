@@ -16,19 +16,19 @@ struct Node {
 class KDtree {
 private:
 	Node* root;
-	vector<Branch>nodes;//all node in my tree
+	vector<Branch>nodes;
 public:
 	KDtree() : root(nullptr) {}
 
-	Node* newNode(string Name, float X, float Y, string NameMain);//*
+	Node* newNode(string Name, float X, float Y, string NameMain);
 
-	bool search(float X, float Y);//*
+	bool search(float X, float Y);
 
 	Branch searchBranch(float X, float Y);
 
-	void buildtree();//*
+	void buildtree();
 
-	void insert(Branch newBranch);//*
+	void insert(Branch newBranch);
 
 	Node* FindClosest1(point& target);
 
@@ -50,7 +50,7 @@ private:
 
 	Node* FindClosest(Node* current, point& target, int depth);
 
-	bool arePointsSame(point point1, point point2);//*
+	bool PointsSame(point point1, point point2);//*
 
 	bool searchRec(Node* r, float X, float Y, unsigned depth);//*
 

@@ -13,5 +13,6 @@ public:
 	int HashFunction(string MainP);
 	void insert(valley* MainP);
 	valley* search(string MainP);
+	void Deleted(valley com);
 };
 

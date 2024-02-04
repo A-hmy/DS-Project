@@ -107,3 +107,13 @@ MainBranchClass HashMain::mostBranches() {
 		return ListNumberOfBranches[size];
 	}
 }
+
+void HashMain::Deleted(MainBranchClass Br) {
+	int index = HashFunction(Br.getName());
+	for (auto it = hashTable[index].begin(); it != hashTable[index].end(); ++it) {
+		if ((*it)->getName() == Br.getName()&& (*it)->getCordinate()==Br.getCordinate()) {
+			hashTable[index].erase(it);
+			break;
+		}
+	}
+}

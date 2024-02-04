@@ -16,7 +16,7 @@ public:
 	MainBranchClass();
 	MainBranchClass(string Name,float x,float y);
 	void setBranch(const Branch& branch);
-	void removeBranch(point& branch);
+	void removeBranch(point branch);
 	string getName();
 	point getCordinate();
 	void printBranch();
@@ -26,5 +26,6 @@ public:
 	void ReduceNumberOfBeranch();
 	int getNumberOfBranch();
 	vector<Branch> getBranches();
+	bool operator==(const MainBranchClass& Mainbranch)const;
 };
 

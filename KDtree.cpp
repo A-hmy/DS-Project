@@ -18,7 +18,6 @@ double KDtree::Distance(point p1, point p2) {
 	return std::sqrt(diffX * diffX + diffY * diffY);
 }
 
-
 bool KDtree::search(float X, float Y)
 {
 	return searchRec(root, X, Y, 0);
@@ -51,7 +50,7 @@ void KDtree::DeleteP(point deleteBranch)
 	buildtree();
 }
 
-bool KDtree::arePointsSame(point point1, point point2)
+bool KDtree::PointsSame(point point1, point point2)
 {
 	if (point1.getX() == point2.getX() && point1.getY() == point2.getY())
 		return true;
@@ -64,7 +63,7 @@ bool KDtree::searchRec(Node* r, float X, float Y, unsigned depth)
 	point* checkPoint = new point(X, Y);
 	if (r == NULL)
 		return false;
-	if (arePointsSame(r->pizzeria.getCoordinate(), *checkPoint))
+	if (PointsSame(r->pizzeria.getCoordinate(), *checkPoint))
 		return true;
 	unsigned cd = depth % 2;
 	if (cd == 0) {
@@ -82,7 +81,7 @@ Branch KDtree::searchBranchRec(Node* r, float X, float Y, unsigned depth)
 {
 	point* checkPoint = new point(X, Y);
 	if (r != NULL) {
-		if (arePointsSame(r->pizzeria.getCoordinate(), *checkPoint))
+		if (PointsSame(r->pizzeria.getCoordinate(), *checkPoint))
 			return r->pizzeria;
 		unsigned cd = depth % 2;
 		if (cd == 0) {
@@ -100,8 +99,7 @@ Branch KDtree::searchBranchRec(Node* r, float X, float Y, unsigned depth)
 Node* KDtree::buildBalancedRec(int begin, int end, unsigned depth)
 {
 	if (begin > end) {
-		return nullptr;
-	}
+		return nullptr;}
 	int comparator = depth % 2;
 	mergeSort(begin, end, comparator);
 	int medianPointIndex = begin + ((end - begin) / 2);
@@ -265,7 +263,6 @@ vector<Branch> KDtree::FindPointsInCircle1(point& target, float radius) {
 	return result;
 }
 
-
 bool KDtree::IsInsideToRectangle(point A, point B, point C, point D,point M) {
 	int flag = 0;
 
@@ -290,16 +287,16 @@ bool KDtree::IsInsideToRectangle(point A, point B, point C, point D,point M) {
 	return (flag % 2 == 1);
 }
 
-
-
-
 void KDtree::FindPointsInRectangle(point A, point B, point C, point D) {
 	for (auto& point1 : nodes) {
+		cout << "\n";
 		if (IsInsideToRectangle(A, B, C, D, point1.getCoordinate())) {
-			cout << "\n" << point1.getName() << "   :        " <<  "("  << point1.getCoordinate().getX() << ", " << point1.getCoordinate().getY() << ")\n";
+			cout << "\t\t\t\033[38;5;28m";
+			cout << point1.getName() << " : " << point1.getCoordinate();
+			cout << "\033[0m";
 		}
-
 	}
+}
 
 void KDtree::setNodes(vector<Branch> Nodes)
 {
